@@ -16,7 +16,11 @@ const Products = () => {
       <h2>Product Page</h2>
       <div className={styles.products}>
         {products.map((each) => (
-          <Link to={`/details`} key={each.id} className={styles.product}>
+          <Link
+            to={`details/${each.id}`}
+            key={each.id}
+            className={styles.product}
+          >
             <h6>{each.category}</h6>
             <p>{each.title}</p>
             <img style={{ width: "100px" }} src={each.image} alt="" />
