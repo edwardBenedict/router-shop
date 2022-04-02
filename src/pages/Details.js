@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import BackArrow from "../assets/BackArrow";
 import CheckoutBag from "../assets/ChackoutBag";
 import styles from "./Details.module.css";
 
 const Details = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState({});
 
   useEffect(() => {
@@ -14,12 +15,22 @@ const Details = () => {
       .then((json) => setProduct(json));
   }, [params.productId]);
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+  const handleCheckout = () => {
+    navigate("/checkout");
+  };
+
   return (
     <div>
       <div className={styles.detailsNav}>
-        <BackArrow />
+        <BackArrow className={styles.detailsNavIcon} onClick={handleBack} />
         <h1>Details Page</h1>
-        <CheckoutBag />
+        <CheckoutBag
+          className={styles.detailsNavIcon}
+          onClick={handleCheckout}
+        />
       </div>
       <div className={styles.detailsWrapper}>
         <p>{product?.id}</p>
