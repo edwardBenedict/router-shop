@@ -15,21 +15,17 @@ const Details = () => {
       .then((json) => setProduct(json));
   }, [params.productId]);
 
-  const handleBack = () => {
-    navigate(-1);
-  };
-  const handleCheckout = () => {
-    navigate("/checkout");
-  };
-
   return (
     <div>
       <div className={styles.detailsNav}>
-        <BackArrow className={styles.detailsNavIcon} onClick={handleBack} />
+        <BackArrow
+          className={styles.detailsNavIcon}
+          onClick={() => navigate(-1)}
+        />
         <h1>Details Page</h1>
         <CheckoutBag
           className={styles.detailsNavIcon}
-          onClick={handleCheckout}
+          onClick={() => navigate("/checkout", { state: { product } })}
         />
       </div>
       <div className={styles.detailsWrapper}>
